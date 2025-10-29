@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoGuard - Sistema de Encriptación</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0f;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(10, 10, 20, 0.95);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(10, 10, 20, 0.95), rgba(10, 10, 20, 0.95)),
+        linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 
+        0 0 50px rgba(0, 255, 255, 0.3),
+        0 0 50px rgba(255, 0, 255, 0.3);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #001a1a 0%, #1a001a 100%);
+    color: #00ffff;
+    padding: 30px;
+    text-align: center;
+    border-bottom: 2px solid #00ffff;
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00ffff 0%, #ff00ff 100%);
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.header p {
+    color: #00cccc;
+    font-size: 1.1em;
+}
+
+.content {
+    padding: 40px;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    color: #00ffff;
+}
+
+.mode-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    color: #000;
+    border: none;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #00ffff;
+    font-size: 1.1em;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.6);
+    color: #00ffff;
+    font-family: inherit;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(0, 255, 255, 0.5);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.process-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.process-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+}
+
+.result-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    border: 2px solid #00ffff;
+    display: none;
+}
+
+.result-container.show {
+    display: block;
+    animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #00ffff;
+    font-size: 1.1em;
+}
+
+.result-text {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+}
+
+.copy-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: transparent;
+    color: #ff00ff;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.copy-btn:hover {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+}
+
+.algorithm-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    border: 2px solid #ff00ff;
+}
+
+.algorithm-info h3 {
+    color: #ff00ff;
+    margin-bottom: 15px;
+}
+
+.algorithm-info ul {
+    padding-left: 20px;
+}
+
+.algorithm-info li {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #00cccc;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 CryptoGuard</h1>
+            <p>Sistema de Encriptación Multicapa Avanzado</p>
+        </div>
+
+        <div class="content">
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="setMode('encrypt')" id="encrypt-btn">
+                    🔒 Encriptar
+                </button>
+                <button class="mode-btn" onclick="setMode('decrypt')" id="decrypt-btn">
+                    🔓 Desencriptar
+                </button>
+            </div>
+
+            <form id="crypto-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="key">🔑 Clave Secreta</label>
+                    <input type="password" id="key" name="key" 
+                           placeholder="Ingresa una clave secreta fuerte..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="text" id="text-label">📝 Texto Original</label>
+                    <textarea id="text" name="text" 
+                              placeholder="Escribe el mensaje que deseas encriptar..." required></textarea>
+                </div>
+
+                <button type="submit" class="process-btn" id="process-btn">
+                    🔒 Encriptar Mensaje
+                </button>
+            </form>
+
+            <div class="result-container" id="result-container">
+                <div class="result-label" id="result-label">Texto Encriptado:</div>
+                <div class="result-text" id="result-text"></div>
+                <button class="copy-btn" onclick="copyResult()">📋 Copiar Resultado</button>
+            </div>
+
+            <div class="algorithm-info">
+                <h3>🔐 ¿Cómo funciona el algoritmo?</h3>
+                <ul>
+                    <li><strong>Capa 1:</strong> Sustitución polialfabética - Cada letra se desplaza según la clave</li>
+                    <li><strong>Capa 2:</strong> Transposición matricial - Reorganiza caracteres en matriz</li>
+                    <li><strong>Capa 3:</strong> Conversión numérica - Aplica XOR y operaciones matemáticas</li>
+                    <li><strong>Capa 4:</strong> Checksum - Valida integridad del mensaje</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       let currentMode = 'encrypt';
+
+    function setMode(mode) {
+        currentMode = mode;
+        const encryptBtn = document.getElementById('encrypt-btn');
+        const decryptBtn = document.getElementById('decrypt-btn');
+        const textLabel = document.getElementById('text-label');
+        const processBtn = document.getElementById('process-btn');
+        const textarea = document.getElementById('text');
+        const keyInput = document.getElementById('key');
+
+        // Limpiar formulario y resultados al cambiar de modo
+        textarea.value = '';
+        keyInput.value = '';
+        document.getElementById('result-container').classList.remove('show');
+
+        if (mode === 'encrypt') {
+            encryptBtn.classList.add('active');
+            decryptBtn.classList.remove('active');
+            textLabel.textContent = '📝 Texto Original';
+            processBtn.textContent = '🔒 Encriptar Mensaje';
+            textarea.placeholder = 'Escribe el mensaje que deseas encriptar...';
+        } else {
+            encryptBtn.classList.remove('active');
+            decryptBtn.classList.add('active');
+            textLabel.textContent = '🔐 Código Encriptado';
+            processBtn.textContent = '🔓 Desencriptar Mensaje';
+            textarea.placeholder = 'Pega el código encriptado aquí (ejemplo: 200504230165...)';
+        }
+    }
+
+    document.getElementById('crypto-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        formData.append('mode', currentMode);
+
+        try {
+            const response = await fetch('{% url "encryptor:process" %}', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById('result-text').textContent = data.result;
+                document.getElementById('result-label').textContent = 
+                    currentMode === 'encrypt' ? '✅ Texto Encriptado:' : '✅ Texto Desencriptado:';
+                document.getElementById('result-container').classList.add('show');
+            } else {
+                alert('❌ Error: ' + data.error);
+            }
+        } catch (error) {
+            alert('❌ Error de conexión: ' + error.message);
+        }
+    });
+
+    function copyResult() {
+        const resultText = document.getElementById('result-text').textContent;
+        navigator.clipboard.writeText(resultText).then(() => {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ ¡Copiado!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        });
+    }
+    </script>
+</body>
+</html>
