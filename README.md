@@ -112,28 +112,8 @@ Pega el código encriptado
 Haz clic en 🔓 Desencriptar Mensaje
 Verifica el mensaje original recuperado
 
-## 📁 Estructura del Proyecto
-cryptoguard/
-│
-├── crypto_project/          # Configuración del proyecto Django
-│   ├── __init__.py
-│   ├── settings.py         # Configuración general
-│   ├── urls.py            # URLs principales
-│   ├── wsgi.py
-│   └── asgi.py
-│
-├── encryptor/              # Aplicación principal
-│   ├── templates/
-│   │   └── encryptor/
-│   │       └── index.html  # Interfaz web
-│   ├── crypto_algorithm.py # Algoritmo de encriptación
-│   ├── views.py           # Vistas de Django
-│   ├── urls.py            # URLs de la app
-│   └── __init__.py
-│
-├── manage.py              # Utilidad de Django
-└── db.sqlite3            # Base de datos
-🔧 Configuración
+
+# 🔧 Configuración
 Cambiar el SECRET_KEY (Producción)
 En crypto_project/settings.py, reemplaza el SECRET_KEY por uno seguro:
 pythonSECRET_KEY = 'tu-clave-secreta-super-segura'
