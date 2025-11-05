@@ -2,7 +2,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) 
 Sistema de encriptación multicapa avanzado desarrollado con Django. CryptoGuard utiliza un algoritmo de encriptación personalizado de 4 capas para proteger tus mensajes de manera segura y eficiente.
 
-✨ Características
+# ✨ Características
 
 🔒 Encriptación Multicapa: Algoritmo de 4 capas que combina múltiples técnicas criptográficas
 🔓 Desencriptación Segura: Recupera el mensaje original usando la clave correcta
@@ -11,14 +11,14 @@ Sistema de encriptación multicapa avanzado desarrollado con Django. CryptoGuard
 📋 Copiar Resultados: Función para copiar el texto encriptado/desencriptado al portapapeles
 🌐 Responsive: Diseño adaptable a diferentes dispositivos
 
-🛠️ Tecnologías
+# 🛠️ Tecnologías
 
 Backend: Django 5.2.7
 Frontend: HTML5, CSS3, JavaScript vanilla
 Base de datos: SQLite (desarrollo)
 Python: 3.x
 
-🔐 Algoritmo de Encriptación
+# 🔐 Algoritmo de Encriptación
 El sistema implementa un algoritmo de encriptación multicapa personalizado:
 Capa 1: Sustitución Polialfabética
 
@@ -50,13 +50,13 @@ SS: Número de columnas (2 dígitos)
 
 
 
-📋 Requisitos Previos
+# 📋 Requisitos Previos
 
 Python 3.8 o superior
 pip (gestor de paquetes de Python)
 Virtualenv (recomendado)
 
-🚀 Instalación
+# 🚀 Instalación
 
 Clonar el repositorio
 
@@ -88,7 +88,7 @@ bashpython manage.py runserver
 Acceder a la aplicación
 
 http://localhost:8000
-💻 Uso
+# 💻 Uso
 Encriptar un mensaje
 
 Selecciona el modo 🔒 Encriptar
@@ -111,7 +111,7 @@ Pega el código encriptado
 Haz clic en 🔓 Desencriptar Mensaje
 Verifica el mensaje original recuperado
 
-📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 cryptoguard/
 │
 ├── crypto_project/          # Configuración del proyecto Django
@@ -153,7 +153,7 @@ Dimensiones de la matriz de transposición
 Operaciones matemáticas en la Capa 3
 Formato del checksum
 
-⚠️ Consideraciones de Seguridad
+# ⚠️ Consideraciones de Seguridad
 
 Nota: Este es un proyecto educativo. Para aplicaciones en producción que requieran seguridad real, utiliza bibliotecas criptográficas probadas como:
 
@@ -162,29 +162,10 @@ PyCrypto / PyCryptodome
 Algoritmos estándar: AES, RSA, etc.
 
 
-🤝 Contribuciones
-Las contribuciones son bienvenidas. Para contribuir:
 
-Fork el proyecto
-Crea una rama para tu feature (git checkout -b feature/AmazingFeature)
-Commit tus cambios (git commit -m 'Add some AmazingFeature')
-Push a la rama (git push origin feature/AmazingFeature)
-Abre un Pull Request
-
-📝 Licencia
-Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
-👤 Autor
+##👤 Autor
 Tu Nombre
 
-GitHub: @tu-usuario
-Email: tu-email@ejemplo.com
-
-🙏 Agradecimientos
-
-Django Framework
-Comunidad de desarrolladores de Python
-Inspiración en algoritmos criptográficos clásicos
+GitHub: @Jonaaxsic
 
 
-⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub!
-Made with ❤️ and Python
